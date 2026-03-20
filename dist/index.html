@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Image to Vector (Potrace)</title>
+    <script type="module" crossorigin src="/assets/index-BA82fMPh.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-DZAQ1YOB.css">
+  </head>
+  <body>
+    <main class="app">
+      <header class="header">
+        <h1>Image to Vector</h1>
+        <p class="sub">
+          Upload an image and get an <code>.svg</code> generated in your browser.
+        </p>
+      </header>
+
+      <section class="card">
+        <label class="field">
+          <span>Image file</span>
+          <input id="fileInput" type="file" accept="image/*" />
+        </label>
+
+        <div class="grid">
+          <label class="field">
+            <span>Output</span>
+            <select id="colorMode">
+              <option value="auto" selected>Auto-best (recommended)</option>
+              <option value="color">Color (best for photos)</option>
+              <option value="bw">Black & white</option>
+            </select>
+            <div class="hint">Auto-best analyzes the image to pick good vectorization parameters.</div>
+          </label>
+
+          <label class="field">
+            <span>Posterize level</span>
+            <input id="posterizeLevel" type="range" min="1" max="64" value="2" />
+            <div class="hint" id="posterizeLevelValue">2</div>
+          </label>
+
+          <label class="field">
+            <span>Noise filter (turdsize)</span>
+            <input id="turdsize" type="range" min="0" max="10" value="2" />
+            <div class="hint" id="turdsizeValue">2</div>
+          </label>
+
+          <label class="field">
+            <span>Smoothing (opttolerance)</span>
+            <input id="opttolerance" type="range" min="0.01" max="1" step="0.01" value="0.2" />
+            <div class="hint" id="opttoleranceValue">0.2</div>
+          </label>
+
+          <label class="field checkbox">
+            <input id="pathOnly" type="checkbox" />
+            <span>Paths only (no colors)</span>
+          </label>
+        </div>
+
+        <div class="actions">
+          <button id="convertBtn" class="primary" disabled>
+            Convert to SVG
+          </button>
+          <a id="downloadLink" class="download" href="#" download="vector.svg" aria-disabled="true" tabindex="-1">
+            Download SVG
+          </a>
+        </div>
+
+        <div id="status" class="status" role="status" aria-live="polite">
+          Loading converter…
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="previewHeader">
+          <h2>Preview</h2>
+          <div class="note">If the result looks messy, try lower “Posterize level” and higher “Noise filter”.</div>
+        </div>
+        <div id="output" class="output" aria-label="SVG output preview"></div>
+      </section>
+
+      <footer class="footer">
+        <span>Tip: Larger images may take longer in the browser.</span>
+      </footer>
+    </main>
+
+  </body>
+</html>
+
